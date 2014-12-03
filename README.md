@@ -6,9 +6,10 @@ AngularJS Couch
 
 CouchDb proceducers
 
-1. Create three databases: users, tasks, project
+1.Create three databases: users, tasks, project
 
-Create new document in users:
+2.Create new document in users:
+```json
 {
    "_id": "admin",
    "password": "admin",
@@ -16,8 +17,11 @@ Create new document in users:
    "fullName": "The Admin",
    "email": "test@test.com"
 }
+```
 
-2. Create new document in tasks (this will be the view):
+
+3.Create new document in tasks (this will be the view):
+```json
 {
    "_id": "_design/tasks",
    "language": "javascript",
@@ -30,5 +34,6 @@ Create new document in users:
        }
    }
 }
+```
 
-3. You are good to go
+4.You are good to go
