@@ -1,0 +1,10 @@
+<form class="form-signin">
+  <h3>New Project</h3>
+  <input class="form-control" placeholder="Project Name" type="text" ng-model="project._id">
+  <textarea class="form-control" placeholder="Short Description" ng-model="project.shortDesc"
+            style="width: 100%"></textarea>
+  <input class="form-control" placeholder="Project Owner" type="text" ng-model="project.owner">
+  <input class="form-control" placeholder="Project URL" type="text" ng-model="project.url">
+  <br/>
+  <button class="btn btn-lg btn-primary btn-block" ng-click="createProject()">New Project</button>
+</form>

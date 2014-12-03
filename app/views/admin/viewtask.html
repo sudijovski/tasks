@@ -1,0 +1,39 @@
+<form class="form-signin">
+  <h3>Edit Task</h3>
+  <label>Assignee:</label>
+  <select class="form-control" data-ng-options="assignee for assignee in assignees" ng-model="task.assignee"></select>
+  <label>Name:</label>
+  <input class="form-control" type="text" ng-model="task.name">
+  <label>Short Description:</label>
+  <textarea class="form-control" ng-model="task.shortDesc" style="width: 100%"></textarea>
+  <label>Status:</label>
+  <select class="form-control" data-ng-options="status for status in statuses" ng-model="task.status"></select>
+  <label>Type:</label>
+  <select class="form-control"data-ng-options="type for type in types" ng-model="task.type"></select>
+  <br>
+  <input class="form-control" type="file" name="file" onchange="angular.element(this).scope().file = this.files[0]"/>
+  <br>
+  <button class="btn btn-sm btn-default" ng-click="uploadFile()">Upload</button>
+  <br>
+  <label>Attachments:</label>
+  <div ng-repeat="(key, value) in task._attachments">
+    <div class="attachment_wrapper">
+      <a ng-href="{{couchServerUrl + 'tasks/' + task._id + '/' + key}}" ng-if="value.content_type.indexOf('image/') != 0">{{key}}</a>
+      <img ng-src="{{couchServerUrl + 'tasks/' + task._id + '/' + key}}" ng-if="value.content_type.indexOf('image/') == 0">
+      <button class="btn btn-sm btn-default" ng-click="deleteAttachment(key)"><span class="glyphicon glyphicon-trash"></span></button>
+    </div>
+  </div>
+  <br>
+  <label>Comments:</label>
+  <div ng-repeat="comment in task.comments">
+    <div class="comment_wrapper">
+      <p><i><b>{{comment.from}}</b> added a new comment: </i></p>
+      <p>{{comment.text}}</p>
+      <button class="btn btn-sm btn-default" ng-click="deleteComment($index)"><span class="glyphicon glyphicon-trash"></span></button>
+    </div>
+  </div>
+  <textarea  ng-model="commentModel" style="width: 100%"></textarea>
+  <button class="btn btn-lg btn-primary btn-block" ng-click="comment()">Comment</button>
+  <button class="btn btn-lg btn-primary btn-block" ng-click="updateTask()">Update Task</button>
+  <button class="btn btn-lg btn-primary btn-block" ng-click="deleteTask()">Delete Task</button>
+</form>

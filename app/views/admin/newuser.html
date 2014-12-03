@@ -1,0 +1,14 @@
+<form class="form-signin">
+  <h3>New User</h3>
+  <input class="form-control" placeholder="Username" type="text" ng-model="user._id" />
+  <input class="form-control" placeholder="Email" type="text" ng-model="user.email">
+  <input class="form-control" placeholder="Full Name" type="text" ng-model="user.fullName">
+  <label>Password:</label>
+  <input class="form-control" placeholder="Password" type="text" ng-model="user.password">
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" ng-model="user.isAdmin" /> Is Admin
+      </label>
+  </div>
+  <button class="btn btn-lg btn-primary btn-block" ng-click="createUser()">New User</button>
+</form>

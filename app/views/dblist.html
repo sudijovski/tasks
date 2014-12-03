@@ -1,0 +1,15 @@
+<h3>Databases:</h3>
+<ul class="databases">
+  <li ng-repeat="database in databases" ng-if="database.substring(0, 1) != '_'">
+    <div><a href="/#/view/{{database}}">{{database}}</a></div>
+  </li>
+  <form name="newDbForm" ng-submit="newDb()">
+    <label for="dbName">Database Name:</label>
+    <div>
+      <input ng-model="dbName" id="dbName" />
+    </div>
+    <button type="button"
+            class="btn btn-mini"
+            ng-click="newDb()">New Database</button>
+  </form>
+</ul>

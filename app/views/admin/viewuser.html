@@ -1,0 +1,18 @@
+<form class="form-signin">
+  <h3>Edit User: <br/> {{document._id}}</h3>
+  <label for="user_email">User Email</label>
+  <input id="user_email" class="form-control" type="text" placeholder="User Email" ng-model="document.email">
+  <label for="user_name">Full Name</label>
+  <input id="user_name" class="form-control" type="text" placeholder="Full Name" ng-model="document.fullName">
+  <label for="user_password">Password</label>
+  <input id="user_password" class="form-control" type="text" placeholder="Password" ng-model="document.password">
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" ng-model="document.isAdmin"> Is Admin
+    </label>
+  </div>
+  <img id="user_avatar" ng-src="{{avatarUrl}}" ng-if="avatarUrl">
+  <br/>
+  <button class="btn btn-lg btn-primary btn-block" ng-click="updateDoc()">Update User</button>
+  <button class="btn btn-lg btn-primary btn-block" ng-click="deleteDoc()">Delete User</button>
+</form>

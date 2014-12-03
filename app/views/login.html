@@ -1,0 +1,9 @@
+  <form ng-submit="login()" class="form-signin">
+    <header>
+      <h2 class="form-signin-heading">Angular Couch</h2>
+    </header>
+    <input class="form-control" placeholder="Username" type="text" ng-model="user.username" ng-focus="userNameFocused()">
+    <input class="form-control" placeholder="Password" type="password" ng-model="user.password">
+    <button type="submit" class="btn btn-lg btn-primary btn-block">Login</button>
+    <label>{{error}}</label>
+  </form>

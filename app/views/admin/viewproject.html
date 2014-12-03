@@ -1,0 +1,28 @@
+<div id="page-wrapper" ng-class="{'active':toggle}" class="active">
+  <div id="sidebar-wrapper">
+    <ul class="sidebar">
+      <li class="sidebar-main">
+        <a href="#">
+          {{document._id}}
+        </a>
+      </li>
+      <li class="sidebar-list sidebar-first">
+        <a ng-href="{{'#' + location + '/tasks'}}">Tasks</a>
+      </li>
+    </ul>
+  </div>
+
+  <form class="form-signin">
+    <h3>Edit Project: <br/> {{document._id}}</h3>
+    <label for="project_description">Short Description</label>
+    <textarea id="project_description" class="form-control" placeholder="Short Description"
+              ng-model="document.shortDesc" style="width: 100%"></textarea>
+    <label for="project_owner">Project Owner</label>
+    <input id="project_owner" class="form-control" placeholder="Project Owner" type="text" ng-model="document.owner">
+    <label for="project_url">Project Url</label>
+    <input id="project_url" class="form-control" placeholder="Project Url" type="text" ng-model="document.url">
+    <br/>
+    <button class="btn btn-lg btn-primary btn-block" ng-click="updateDoc()">Update Project</button>
+    <button class="btn btn-lg btn-primary btn-block" ng-click="deleteDoc()">Delete Project</button>
+  </form>
+</div>

@@ -1,0 +1,27 @@
+<form class="form-signin">
+  <h3>Edit User Profile View</h3>
+
+  <p><b>Username:</b>
+    {{document._id}}
+  </p>
+  <label>Your email:</label>
+  <input class="form-control" type="text" ng-model="document.email">
+  <label>Full Name:</label>
+  <input class="form-control" type="text" ng-model="document.fullName">
+  <br>
+  <label>Your Password:</label>
+  <input class="form-control" type="text" ng-model="document.password">
+  <br>
+  <label>Avatar:</label>
+
+  <div>
+    <div ng-repeat="(key, value) in document._attachments">
+      <img ng-src="{{couchServerUrl + 'users/' + document._id + '/' + key}}">
+    </div>
+  </div>
+  <br>
+  <input class="form-control" type="file" name="file" onchange="angular.element(this).scope().file = this.files[0]"/>
+  <br>
+  <button class="btn btn-lg btn-primary btn-block" ng-click="uploadFile()">Upload</button>
+  <button class="btn btn-lg btn-primary btn-block" ng-click="updateDoc()">Update</button>
+</form>

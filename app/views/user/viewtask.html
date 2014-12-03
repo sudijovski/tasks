@@ -1,0 +1,60 @@
+<form class="form-signin">
+  <div class="form_subsection">
+    <h3>Task Details</h3>
+
+    <p>
+      <b>Name:</b>
+      {{task.name}}
+    </p>
+
+    <p>
+      <b>Short Description:</b>
+      {{task.shortDesc}}
+    </p>
+
+    <p>
+      <b>Type:</b>
+      {{task.type}}
+    </p>
+  </div>
+  <div class="form_subsection">
+    <label>Change Status:</label>
+    <select class="form-control" data-ng-options="status for status in statuses" ng-model="task.status"></select>
+    <label>Upload Attachment</label>
+    <input class="form-control" type="file" name="file" onchange="angular.element(this).scope().file = this.files[0]"/>
+    <br>
+    <button class="btn btn-primary btn-block" ng-click="uploadFile()">Upload</button>
+    <br>
+  </div>
+  <div class="form_subsection">
+    <h3>Attachments:</h3>
+    <div>
+      <div ng-repeat="(key, value) in task._attachments">
+        <div>
+          <a ng-href="{{couchServerUrl + 'tasks/' + task._id + '/' + key}}"
+             ng-if="value.content_type.indexOf('image/') != 0">{{key}}</a>
+          <img ng-src="{{couchServerUrl + 'tasks/' + task._id + '/' + key}}"
+               ng-if="value.content_type.indexOf('image/') == 0">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="form_subsection">
+    <h3>Comments:</h3>
+
+    <div ng-repeat="comment in task.comments">
+      <div>
+        <p>
+          <b><i>{{comment.from}} says:</i></b>
+          <br/>
+          {{comment.text}}
+        </p>
+      </div>
+    </div>
+    <textarea class="form-control" ng-model="commentModel" style="width: 100%"></textarea>
+    <button class="btn btn-primary btn-block" ng-click="comment()">Comment</button>
+  </div>
+  <button class="btn btn-lg btn-primary btn-block" ng-click="updateTask()">Update Task</button>
+  <button class="btn btn-lg btn-primary btn-block" ng-click="deleteTask()">Delete Task</button>
+</form>

@@ -1,0 +1,11 @@
+<form class="form-signin" ng-submit="createTask()">
+  <label>Assignee</label>
+  <select class="form-control" data-ng-options="assignee.id for assignee in assignees" data-ng-model="task.assignee"></select>
+  <label>Type</label>
+  <select class="form-control" data-ng-options="taskType for taskType in taskTypes" data-ng-model="taskType"></select>
+  <br/>
+  <input placeholder="Name" class="form-control" type="text" ng-model="task.name">
+  <textarea placeholder="Short Description" class="form-control" ng-model="task.shortDesc" style="width: 100%"></textarea>
+  <br/>
+  <button class="btn btn-lg btn-primary btn-block">Create Task</button>
+</form>

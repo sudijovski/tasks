@@ -1,0 +1,93 @@
+<div id="page-wrapper" ng-class="{'active':toggle}" class="active">
+  <div id="sidebar-wrapper">
+    <ul class="sidebar">
+      <li class="sidebar-main">
+        <a ng-href="{{'#/' + database}}" ng-click="type = undefined">
+          {{database.toUpperCase()}}
+        </a>
+      </li>
+      <li class="sidebar-list sidebar-first">
+        <a ng-href="{{'#/' + database}}" ng-click="linkClicked(document.id, true)">New {{documentType}}</a>
+      </li>
+      <li class="sidebar-list" ng-repeat="doc in documents.rows">
+        <a href="/#/{{database}}" ng-click="linkClicked(doc.id, false)">{{doc.id}}</a>
+      </li>
+    </ul>
+  </div>
+  <div class="central-content-div" ng-if="type == undefined">
+    <p class="lead">
+      Click on {{documentType}} to view/edit
+    </p>
+  </div>
+  <div class="central-content-div" ng-if="type == 'new-user'">
+    <form class="form-signin">
+      <h3>New User</h3>
+      <input class="form-control" placeholder="Username" type="text" ng-model="document._id"/>
+      <input class="form-control" placeholder="Email" type="text" ng-model="document.email">
+      <input class="form-control" placeholder="Full Name" type="text" ng-model="document.fullName">
+      <label>Password:</label>
+      <input class="form-control" placeholder="Password" type="text" ng-model="document.password">
+
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" ng-model="document.isAdmin"/> Is Admin
+        </label>
+      </div>
+      <button class="btn btn-lg btn-primary btn-block" ng-click="updateDoc()">New User</button>
+    </form>
+  </div>
+
+  <div class="central-content-div" ng-if="type == 'new-project'">
+    <form class="form-signin">
+      <h3>New Project</h3>
+      <input class="form-control" placeholder="Project Name" type="text" ng-model="document._id">
+      <textarea class="form-control" placeholder="Short Description" ng-model="document.shortDesc"
+                style="width: 100%"></textarea>
+      <input class="form-control" placeholder="Project Owner" type="text" ng-model="document.owner">
+      <input class="form-control" placeholder="Project URL" type="text" ng-model="document.url">
+      <br/>
+      <button class="btn btn-lg btn-primary btn-block" ng-click="updateDoc()">New Project</button>
+    </form>
+  </div>
+
+  <div class="central-content-div" ng-if="type == 'user'">
+    <form class="form-signin">
+      <h3>Edit User: <br/> {{document._id}}</h3>
+      <label for="user_email">User Email</label>
+      <input id="user_email" class="form-control" type="text" placeholder="User Email" ng-model="document.email">
+      <label for="user_name">Full Name</label>
+      <input id="user_name" class="form-control" type="text" placeholder="Full Name" ng-model="document.fullName">
+      <label for="user_password">Password</label>
+      <input id="user_password" class="form-control" type="text" placeholder="Password" ng-model="document.password">
+
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" ng-model="document.isAdmin"> Is Admin
+        </label>
+      </div>
+      <img id="user_avatar" ng-src="{{avatarUrl}}" ng-if="avatarUrl">
+      <br/>
+      <button class="btn btn-lg btn-primary btn-block" ng-click="updateDoc()">Update User</button>
+      <button class="btn btn-lg btn-primary btn-block" ng-click="deleteDoc()">Delete User</button>
+    </form>
+  </div>
+
+  <div class="central-content-div" ng-if="type == 'project'">
+    <form class="form-signin">
+      <h3>Edit Project: <br/> {{document._id}}</h3>
+      <label for="project_description">Short Description</label>
+      <textarea id="project_description" class="form-control" placeholder="Short Description"
+                ng-model="document.shortDesc" style="width: 100%"></textarea>
+      <label for="project_owner">Project Owner</label>
+      <input id="project_owner" class="form-control" placeholder="Project Owner" type="text"
+             ng-model="document.owner">
+      <label for="project_url">Project Url</label>
+      <input id="project_url" class="form-control" placeholder="Project Url" type="text" ng-model="document.url">
+      <br/>
+      <button class="btn btn-lg btn-primary btn-block" ng-click="updateDoc()">Update Project</button>
+      <button class="btn btn-lg btn-primary btn-block" ng-click="deleteDoc()">Delete Project</button>
+      <br/>
+      <a ng-href="{{'#' + location + '/' + document._id + '/tasks'}}">Tasks</a>
+    </form>
+  </div>
+</div>

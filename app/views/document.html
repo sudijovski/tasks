@@ -1,0 +1,23 @@
+<h3>Document: {{document._id}}</h3>
+<ul class="documents">
+  <br>
+  <a ng-href="{{'#' + location + '/tasks'}}">Tasks</a>
+  <button type="button"
+          class="btn btn-mini"
+          ng-click="uploadFile()">Upload</button>
+  <form name="deleteUpdate">
+    <button type="button"
+            class="btn btn-mini"
+            ng-click="updateDoc()">Update Me</button>
+    <button type="button"
+            class="btn btn-mini"
+            ng-click="deleteDoc()">Delete Me</button>
+  </form>
+  <textarea ng-model="document" style="width: 100%"></textarea>
+  <li ng-repeat="attachment in attachments">
+    <div>
+      <a ng-href="{{attachment.url}}" ng-if="attachment.content_type == 'application/octet-stream'">{{attachment.name}}</a>
+      <img ng-src="{{attachment.url}}" ng-if="attachment.content_type != 'application/octet-stream'"></div>
+    </div>
+  </li>
+</ul>
